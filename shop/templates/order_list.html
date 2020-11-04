@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container center">
+    <div class="lg-card white">
+        <div class="card-content black-text">
+          <p class="title">Order History</p>
+            {% for order in orders %}
+          <p>Order #{{order.id}}</p>
+          <p>{{order.date}}</p>
+          <a class="waves-effect indigo darken btn" href="{% url 'order' order.id %}">See more</a>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

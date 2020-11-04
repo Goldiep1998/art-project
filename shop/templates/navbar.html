@@ -1,0 +1,20 @@
+  {% load static %}
+  <nav class = 'grey darken-4'>
+    <div class="nav-wrapper">
+      <a href="{% url 'welcome' %}" class="brand-logo left"><img style="height: 40px; width: 140px; margin-top: 15px; margin-left: 15px;" src="{% static 'shop/images/logo.png' %}" /></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{% url 'welcome' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'gallery' %}">Gallery</a></li> 
+        <li>{% if not request.user.is_anonymous %}
+          <li><a href="{% url 'flagged_images' %}">Flagged Images</a></li> 
+        <li><a href="{% url 'upload' %}">Sell</a></li>
+        <li><a href="{% url 'order_list' %}">Orders</a>  
+          <li><a href="{% url 'cart' %}">Cart</a> 
+          <li><a href="{% url 'profile' %}">Profile</a>  
+          <li><a href="{% url 'logout' %}">Logout</a>   
+        <li style="color: rgb(235, 206, 152); padding-right: 15px;">{{user.username}} is logged in</li>{% else %} <a href="{% url 'login' %}">Login</a> </li> {% endif %}</li>
+      </ul>
+    </div>
+  </nav>
+

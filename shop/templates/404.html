@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class='giraffe'>
+    <img src="cartoon-giraffe.jpg">  
+    </div>
+    <h6>I'm sorry, the page you are trying to reach does not exist</h6>
+    <a class="waves-effect indigo darken btn" href="{% url 'welcome' %}">Click here to return to home page</a>
+{% endblock %}

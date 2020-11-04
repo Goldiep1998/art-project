@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="lg-card white">
+        <div class="card-content black-text">
+            <p class="title">Cart</p>
+            {% if order.items.all %}
+            {% for item in order.items.all %}
+            <div class="col s12 m7">
+                <div class="card horizontal">
+                  <div class="card-image" style="padding-left: 9px;">
+                    <a href="{% url 'image-info' item.item.id %}"><img src="{{ item.item.image.url }}" height="160px"></a>
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                    <a href="{% url 'image-info' item.item.id %}" style="display:flex; flex-direction: row-reverse; font-size: x-large; color: black;">{{item.item.title}}</a>
+                      <p style="display:flex; flex-direction: row-reverse;">Price: {{item.item.price}}</p>
+                    </div>
+                    <div class="card-action" style="display: flex; flex-direction:row-reverse;">
+                        <a href="{% url 'remove_item' item.id %}">Remove</a>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+            <br>
+            <a class="waves-effect indigo darken btn" href="{% url 'buy' order.id %}">Buy</a>
+            <h5 style="color: green;">Total: {{total}}</h5>
+            {% endif %}
+            <a class="waves-effect indigo darken btn" href="{% url 'gallery' %}">Go to Gallery</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

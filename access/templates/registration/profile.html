@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="lg-card white">
+        <div class="card-content black-text center">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="success_message">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <p class="title">Edit User</p>
+            <form method="Post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <img src="{{ user.profile.image.url }}" style="height: 150px;"> <br>
+                {{user_form}}
+                {{profile_form}} <br>
+                <input class="waves-effect indigo darken btn" type="submit" value='Update'>
+                <a class="waves-effect indigo darken btn" href="{% url 'delete_user' %}">Delete User</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+  
+  

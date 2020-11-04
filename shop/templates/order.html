@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="lg-card white">
+        <div class="card-content black-text">
+            <p class="title">Order #{{items.id}}</p>
+            {% for item in items.items.all %}
+            <div class="col s12 m7">
+                <div class="card horizontal">
+                  <div class="card-image" style="padding-left: 9px;">
+                    <img src="{{ item.item.image.url }}" height="160px">
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                    <p style="display:flex; flex-direction: row-reverse;">{{item.item.title}}</p>
+                    <p style="display:flex; flex-direction: row-reverse;">Price: {{item.item.price}}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+            <br>
+            <h5 style="color: green;">Total: {{total}}</h5>
+            <a class="waves-effect indigo darken btn" href="{% url 'order_list' %}">Back to orders</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

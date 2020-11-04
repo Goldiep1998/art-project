@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container center">
+      <div class="lg-card white">
+          <div class="card-content black-text">
+            <p class="title">{{image.title}}</p>
+            <img src="{{ image.image.url }}" style="height: 450px;">
+            <p>{{image.description}}</p>
+            <p>Price: {{image.price}}</p>
+            <p>Seller: {{image.seller}}</p>
+            <a class="waves-effect indigo darken btn" href="{% url 'add_to_cart' image.id %}">Add to Cart</a> <br>
+            {% if request.user.is_superuser %}
+            <button class="btn modal-trigger waves-effect indigo darken" data-target="modal1">Delete Seller</button> 
+            {% endif %}
+          </div>
+      </div>
+  </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Delete User</h4>
+        <p>Are you sure you would like to proceed with this action?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="{% url 'admin_delete_user' image.seller.id %}" class="modal-close waves-effect indigo darken btn">Agree</a>
+      </div>
+    </div>
+
+ 
+{% endblock %}

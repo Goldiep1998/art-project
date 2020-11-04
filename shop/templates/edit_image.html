@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container center">
+    <div class="lg-card white">
+        <div class="card-content black-text">
+          <p class="title">Edit Image</p>  
+          <form method="POST">
+            <div class="row"> 
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button class="waves-effect indigo darken btn" type="submit">Save Changes</button>
+            <a class="waves-effect indigo darken btn" href="{% url 'gallery' %}">Cancel</a>
+          </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

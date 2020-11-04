@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="lg-card white">
+<p class="title">Flagged Images</p>
+<div class="row">
+{% for image in images %}
+    <div class="col s3">
+      <div class="card z-depth-5">
+        <div class="card-image">
+        <img src="{{ image.image.url }}" class="materialboxed responsive-img" style="height: 150px;">
+        </div>
+        <div class="card-content">
+          <p class="card-title">{{image.title}}</p>
+          {% if request.user.is_superuser %}
+          <a class="waves-effect indigo darken btn" href="{% url 'remove_flag' image.id %}">Remove Flag</a>
+          {% endif %}
+          {% if request.user == image.seller %}
+          <a class="waves-effect indigo darken btn" href="{% url 'delete' image.id %}">Delete</a>
+          <a class="waves-effect indigo darken btn" href="{% url 'edit' image.id %}">Edit</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endblock %}
+

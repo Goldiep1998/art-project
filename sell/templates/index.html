@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container center">
+  <h1 class='title'>Upload Image</h1>
+<form method="post" enctype="multipart/form-data">
+  <div class="row">
+    {% csrf_token %}
+    {{ form.as_p }}
+  </div>
+    <button class="waves-effect indigo darken btn" type="submit">Upload</button>
+</form>
+    <a class="waves-effect indigo darken btn" href="{% url 'upload' %}">Upload another</a>
+</div>
+{% endblock %}

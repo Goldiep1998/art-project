@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="shortcut icon" href="static/shop/images/flower-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="static/shop/style.css">
+    <title>ArtSellNShop</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block additional_styles %}
+    <style>
+        body{   
+            background-image: url('static/shop/images/black72.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+    </style>
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256- 
+DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous">
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+    $('.modal').modal();
+  });
+    </script>
+  
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>
+    M.toast({html: '{{message}}', classes: 'light-green darken-4 z-depth-5'})
+    </script>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>
+    M.toast({html: '{{message}}', classes: 'z-depth-5'})
+    </script>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>
+    M.toast({html: '{{message}}', classes: 'red z-depth-5'})
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    <script>
+        // Material boxed
+            const mb = document.querySelectorAll('.materialboxed');
+            M.Materialbox.init(mb, {});
+    </script>
+
+</body>
+</html>
