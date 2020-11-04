@@ -76,7 +76,7 @@ def buy(request, id):
     order.finalized='True'
     order.save()
     email_buyer(request, order)
-    messages.success(request, f'You have purchased {image.title}')
+    messages.success(request, f'Your order has gone through. You will be receiving email confirmation shortly.')
     return redirect('gallery')
 
 @login_required()
