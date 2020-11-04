@@ -13,9 +13,6 @@ from django.db.models import Sum
 
 # Create your views here.
 
-def error_404_view(request, exception):
-    return render(request, '404.html')
-
 def welcome(request):
     return render(request, 'welcome.html')
 
@@ -42,6 +39,9 @@ def add_to_cart(request, id):
 @login_required()
 def cart(request):
     order, created = Order.objects.get_or_create(finalized=False, buyer=request.user)
+    for orderitem in order.items.all():
+        if orderitem.item.status != 'in-cart':
+            orderitem.item.delete()
     total = order.items.aggregate(Sum('item__price'))
     return render(request, 'cart.html', {'order':order, 'total':total['item__price__sum']})
 

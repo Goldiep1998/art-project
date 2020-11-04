@@ -45,7 +45,6 @@ env/
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
-static/
 .idea/
 artsellnshop/local_settings.py
 media/

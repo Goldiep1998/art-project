@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from sell.models import Image
 
 
 
@@ -53,6 +54,7 @@ def delete_user(request):
     user = request.user
     user.is_active = False
     user.save()
+    images = Image.objects.filter(seller=request.user).update(status='deleted')
     logout(request)
     messages.success(request, 'Profile successfully disabled.')
     return redirect('welcome')
@@ -63,6 +65,7 @@ def admin_delete_user(request, id):
         user = User.objects.get(id=id)
         user.is_active = False
         user.save()
+        images = Image.objects.filter(seller=id).update(status='deleted')
         subject = f'Your account has been deactivated.'
         message = f'{user}, your account has been deactivated by admin.'
         email_from = settings.EMAIL_HOST_USER 
