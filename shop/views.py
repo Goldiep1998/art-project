@@ -111,7 +111,7 @@ def edit(request, id):
     image = Image.objects.get(id=id)
     if request.user == image.seller:
         if request.method == 'POST':
-            form = ImageForm(request.POST, instance=image)
+            form = ImageForm(request.POST, request.FILES, instance=image)
             if form.is_valid():
                 form.save()
                 messages.success(request, f"Your image's changes have been updated.")
