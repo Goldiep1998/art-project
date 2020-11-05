@@ -5,7 +5,7 @@
     <div class="lg-card white">
         <div class="card-content black-text">
           <p class="title">Edit Image</p>  
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             <div class="row"> 
                 {% csrf_token %}
                 {{ form.as_p }}
